@@ -10,10 +10,14 @@ from app.ingestion.chunker import Chunk
 class VectorStore:
 
     def __init__(self):
-        self.client = chromadb.PersistentClient(
-            path=settings.chroma_persist_dir,
-            settings=ChromaSettings(anonymized_telemetry=False),
-        )
+        persist_dir = settings.chroma_persist_dir
+
+        try:
+            os.makedirs(persist_dir, exist_ok=True)
+            self.client = chromadb.PersistentClient(path=persist_dir)
+        except Exception:
+            self.client = chromadb.Client()
+
         self.collection = self.client.get_or_create_collection(
             name=settings.collection_name,
             metadata={"hnsw:space": "cosine"},
@@ -35,11 +39,9 @@ class VectorStore:
             for c in chunks
         ]
 
-        # Generate embeddings
         logger.info(f"Generating embeddings for {len(texts)} chunks...")
         embeddings = self.embedder.embed_texts(texts)
 
-        # Upsert into ChromaDB (upsert = insert or update)
         self.collection.upsert(
             ids=ids,
             documents=texts,
@@ -55,15 +57,15 @@ class VectorStore:
     ) -> list[dict]:
         top_k = top_k or settings.top_k
 
-        # Embed the query
+        
         query_embedding = self.embedder.embed_query(query)
 
-        # Build where filter if source specified
+        
         where_filter = None
         if source_filter:
             where_filter = {"source_file": source_filter}
 
-        # Query ChromaDB
+        
         results = self.collection.query(
             query_embeddings=[query_embedding],
             n_results=top_k,
@@ -71,7 +73,7 @@ class VectorStore:
             include=["documents", "metadatas", "distances"],
         )
 
-        # Format results
+        
         formatted = []
         for i in range(len(results["ids"][0])):
             formatted.append({
@@ -79,7 +81,6 @@ class VectorStore:
                 "source_file": results["metadatas"][0][i]["source_file"],
                 "page_number": results["metadatas"][0][i]["page_number"],
                 "score": round(1 - results["distances"][0][i], 4),
-                # ChromaDB returns distance; convert to similarity
             })
 
         return formatted
