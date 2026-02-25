@@ -1,0 +1,459 @@
+[
+  {
+    "question": "What was Apple's total net sales for fiscal year 2024?",
+    "expected_answer_contains": [
+      "391,035"
+    ],
+    "expected_source_file": "NASDAQ_AAPL_2024.pdf",
+    "expected_page": 32
+  },
+  {
+    "question": "What was Apple's net income for fiscal year 2024?",
+    "expected_answer_contains": [
+      "93,736"
+    ],
+    "expected_source_file": "NASDAQ_AAPL_2024.pdf",
+    "expected_page": 32
+  },
+  {
+    "question": "How many full-time equivalent employees did Apple have as of September 28, 2024?",
+    "expected_answer_contains": [
+      "164,000"
+    ],
+    "expected_source_file": "NASDAQ_AAPL_2024.pdf",
+    "expected_page": 7
+  },
+  {
+    "question": "What is Apple's stock ticker symbol and which exchange is it traded on?",
+    "expected_answer_contains": [
+      "AAPL",
+      "Nasdaq"
+    ],
+    "expected_source_file": "NASDAQ_AAPL_2024.pdf",
+    "expected_page": 22
+  },
+  {
+    "question": "Where is Apple's headquarters located?",
+    "expected_answer_contains": [
+      "Cupertino",
+      "California"
+    ],
+    "expected_source_file": "NASDAQ_AAPL_2024.pdf",
+    "expected_page": 21
+  },
+  {
+    "question": "What was Apple's basic earnings per share for fiscal year 2024?",
+    "expected_answer_contains": [
+      "6.11"
+    ],
+    "expected_source_file": "NASDAQ_AAPL_2024.pdf",
+    "expected_page": 32
+  },
+  {
+    "question": "What was Apple's diluted earnings per share for fiscal year 2024?",
+    "expected_answer_contains": [
+      "6.08"
+    ],
+    "expected_source_file": "NASDAQ_AAPL_2024.pdf",
+    "expected_page": 32
+  },
+  {
+    "question": "How many shareholders of record did Apple have as of October 18, 2024?",
+    "expected_answer_contains": [
+      "23,301"
+    ],
+    "expected_source_file": "NASDAQ_AAPL_2024.pdf",
+    "expected_page": 22
+  },
+  {
+    "question": "What was Apple's quarterly cash dividend per share as of September 28, 2024?",
+    "expected_answer_contains": [
+      "0.25"
+    ],
+    "expected_source_file": "NASDAQ_AAPL_2024.pdf",
+    "expected_page": 29
+  },
+  {
+    "question": "Who signed Apple's 10-K as Chief Financial Officer?",
+    "expected_answer_contains": [
+      "Luca Maestri"
+    ],
+    "expected_source_file": "NASDAQ_AAPL_2024.pdf",
+    "expected_page": 60
+  },
+  {
+    "question": "What was iPhone net sales for fiscal year 2024 and how did it compare to 2023?",
+    "expected_answer_contains": [
+      "201,183",
+      "200,583"
+    ],
+    "expected_source_file": "NASDAQ_AAPL_2024.pdf",
+    "expected_page": 26
+  },
+  {
+    "question": "What was Apple's Services revenue for 2024 and by what percentage did it grow?",
+    "expected_answer_contains": [
+      "96,169",
+      "13"
+    ],
+    "expected_source_file": "NASDAQ_AAPL_2024.pdf",
+    "expected_page": 26
+  },
+  {
+    "question": "What was Apple's net sales from the Americas segment in 2024 and 2023?",
+    "expected_answer_contains": [
+      "167,045",
+      "162,560"
+    ],
+    "expected_source_file": "NASDAQ_AAPL_2024.pdf",
+    "expected_page": 25
+  },
+  {
+    "question": "What was Apple's net sales from Greater China and how did it change year-over-year?",
+    "expected_answer_contains": [
+      "66,952",
+      "8"
+    ],
+    "expected_source_file": "NASDAQ_AAPL_2024.pdf",
+    "expected_page": 25
+  },
+  {
+    "question": "What were Wearables, Home and Accessories net sales for 2024 and 2023?",
+    "expected_answer_contains": [
+      "37,005",
+      "39,845"
+    ],
+    "expected_source_file": "NASDAQ_AAPL_2024.pdf",
+    "expected_page": 26
+  },
+  {
+    "question": "What was the operating income for the Europe segment in 2024?",
+    "expected_answer_contains": [
+      "41,790"
+    ],
+    "expected_source_file": "NASDAQ_AAPL_2024.pdf",
+    "expected_page": 50
+  },
+  {
+    "question": "What was the operating income for the Greater China segment in 2024 compared to 2023?",
+    "expected_answer_contains": [
+      "27,082",
+      "30,328"
+    ],
+    "expected_source_file": "NASDAQ_AAPL_2024.pdf",
+    "expected_page": 50
+  },
+  {
+    "question": "What was Apple's total gross margin percentage for 2024 and how did it compare to 2023?",
+    "expected_answer_contains": [
+      "46.2",
+      "44.1"
+    ],
+    "expected_source_file": "NASDAQ_AAPL_2024.pdf",
+    "expected_page": 27
+  },
+  {
+    "question": "What was the Services gross margin percentage for 2024?",
+    "expected_answer_contains": [
+      "73.9"
+    ],
+    "expected_source_file": "NASDAQ_AAPL_2024.pdf",
+    "expected_page": 27
+  },
+  {
+    "question": "How much did Apple spend on research and development in 2024 versus 2023?",
+    "expected_answer_contains": [
+      "31,370",
+      "29,915"
+    ],
+    "expected_source_file": "NASDAQ_AAPL_2024.pdf",
+    "expected_page": 32
+  },
+  {
+    "question": "What were Apple's total assets and total liabilities as of September 28, 2024?",
+    "expected_answer_contains": [
+      "364,980",
+      "308,030"
+    ],
+    "expected_source_file": "NASDAQ_AAPL_2024.pdf",
+    "expected_page": 34
+  },
+  {
+    "question": "How much cash was generated by Apple's operating activities in fiscal year 2024?",
+    "expected_answer_contains": [
+      "118,254"
+    ],
+    "expected_source_file": "NASDAQ_AAPL_2024.pdf",
+    "expected_page": 36
+  },
+  {
+    "question": "What was Apple's total current assets versus total current liabilities as of September 28, 2024?",
+    "expected_answer_contains": [
+      "152,987",
+      "176,392"
+    ],
+    "expected_source_file": "NASDAQ_AAPL_2024.pdf",
+    "expected_page": 34
+  },
+  {
+    "question": "What was the value of Apple's accounts receivable as of September 28, 2024?",
+    "expected_answer_contains": [
+      "33,410"
+    ],
+    "expected_source_file": "NASDAQ_AAPL_2024.pdf",
+    "expected_page": 34
+  },
+  {
+    "question": "What was Apple's inventory value as of September 28, 2024 and September 30, 2023?",
+    "expected_answer_contains": [
+      "7,286",
+      "6,331"
+    ],
+    "expected_source_file": "NASDAQ_AAPL_2024.pdf",
+    "expected_page": 34
+  },
+  {
+    "question": "Why was Apple's effective tax rate for 2024 significantly higher than the statutory federal rate of 21%?",
+    "expected_answer_contains": [
+      "State Aid Decision",
+      "10.2 billion",
+      "state income taxes"
+    ],
+    "expected_source_file": "NASDAQ_AAPL_2024.pdf",
+    "expected_page": 28
+  },
+  {
+    "question": "What happened with the European Commission State Aid Decision and what was the financial impact on Apple?",
+    "expected_answer_contains": [
+      "Ireland",
+      "15.8 billion",
+      "10.2 billion",
+      "escrow"
+    ],
+    "expected_source_file": "NASDAQ_AAPL_2024.pdf",
+    "expected_page": 43
+  },
+  {
+    "question": "What caused Products gross margin percentage to increase in 2024 and what partially offset it?",
+    "expected_answer_contains": [
+      "cost savings",
+      "Products mix",
+      "foreign currencies"
+    ],
+    "expected_source_file": "NASDAQ_AAPL_2024.pdf",
+    "expected_page": 27
+  },
+  {
+    "question": "Why did Greater China net sales decrease during 2024 compared to 2023?",
+    "expected_answer_contains": [
+      "lower",
+      "iPhone",
+      "iPad"
+    ],
+    "expected_source_file": "NASDAQ_AAPL_2024.pdf",
+    "expected_page": 25
+  },
+  {
+    "question": "What was the total amount of Apple's share repurchase program announced in May 2024 and what was the previous quarterly dividend before the increase?",
+    "expected_answer_contains": [
+      "110 billion",
+      "0.24"
+    ],
+    "expected_source_file": "NASDAQ_AAPL_2024.pdf",
+    "expected_page": 29
+  },
+  {
+    "question": "How much total capital did Apple return to shareholders in 2024 through share repurchases and dividends combined?",
+    "expected_answer_contains": [
+      "95.0",
+      "15.2"
+    ],
+    "expected_source_file": "NASDAQ_AAPL_2024.pdf",
+    "expected_page": 29
+  },
+  {
+    "question": "What was the total segment operating income for 2024 and how does it reconcile to total operating income?",
+    "expected_answer_contains": [
+      "162,044",
+      "123,216",
+      "31,370",
+      "research and development"
+    ],
+    "expected_source_file": "NASDAQ_AAPL_2024.pdf",
+    "expected_page": 50
+  },
+  {
+    "question": "Where is substantially all of Apple's manufacturing performed?",
+    "expected_answer_contains": [
+      "China mainland",
+      "India",
+      "Japan",
+      "South Korea",
+      "Taiwan",
+      "Vietnam"
+    ],
+    "expected_source_file": "NASDAQ_AAPL_2024.pdf",
+    "expected_page": 9
+  },
+  {
+    "question": "What subscription-based services does Apple offer for digital content?",
+    "expected_answer_contains": [
+      "Apple Arcade",
+      "Apple Fitness",
+      "Apple Music"
+    ],
+    "expected_source_file": "NASDAQ_AAPL_2024.pdf",
+    "expected_page": 5
+  },
+  {
+    "question": "What are the key cybersecurity risks Apple faces according to the 10-K?",
+    "expected_answer_contains": [
+      "malicious attacks",
+      "unauthorized access",
+      "confidential information"
+    ],
+    "expected_source_file": "NASDAQ_AAPL_2024.pdf",
+    "expected_page": 15
+  },
+  {
+    "question": "What competing platforms does Apple face in the third-party software developer ecosystem?",
+    "expected_answer_contains": [
+      "Android",
+      "Windows",
+      "PlayStation",
+      "Nintendo",
+      "Xbox"
+    ],
+    "expected_source_file": "NASDAQ_AAPL_2024.pdf",
+    "expected_page": 13
+  },
+  {
+    "question": "What new products and software did Apple announce during fiscal year 2024?",
+    "expected_answer_contains": [
+      "MacBook Pro",
+      "MacBook Air",
+      "iPad Air",
+      "iPad Pro",
+      "iOS 18"
+    ],
+    "expected_source_file": "NASDAQ_AAPL_2024.pdf",
+    "expected_page": 24
+  },
+  {
+    "question": "What risks does Apple describe related to foreign exchange rates?",
+    "expected_answer_contains": [
+      "U.S. dollar",
+      "foreign currencies",
+      "gross margins",
+      "international pricing"
+    ],
+    "expected_source_file": "NASDAQ_AAPL_2024.pdf",
+    "expected_page": 19
+  },
+  {
+    "question": "What was Apple's total deferred revenue as of September 28, 2024 and what percentage was expected to be realized in less than a year?",
+    "expected_answer_contains": [
+      "12.8 billion",
+      "64%"
+    ],
+    "expected_source_file": "NASDAQ_AAPL_2024.pdf",
+    "expected_page": 39
+  },
+  {
+    "question": "How much were Apple's variable lease payments in 2024 compared to fixed lease costs?",
+    "expected_answer_contains": [
+      "13.8 billion",
+      "2.0 billion"
+    ],
+    "expected_source_file": "NASDAQ_AAPL_2024.pdf",
+    "expected_page": 45
+  },
+  {
+    "question": "What was the weighted-average interest rate of Apple's commercial paper as of September 28, 2024?",
+    "expected_answer_contains": [
+      "5.00"
+    ],
+    "expected_source_file": "NASDAQ_AAPL_2024.pdf",
+    "expected_page": 46
+  },
+  {
+    "question": "How many RSUs were outstanding as of September 28, 2024 and what was the weighted-average grant-date fair value?",
+    "expected_answer_contains": [
+      "163,326",
+      "158.73"
+    ],
+    "expected_source_file": "NASDAQ_AAPL_2024.pdf",
+    "expected_page": 48
+  },
+  {
+    "question": "What was Apple's capitalized research and development deferred tax asset as of September 28, 2024?",
+    "expected_answer_contains": [
+      "10,739"
+    ],
+    "expected_source_file": "NASDAQ_AAPL_2024.pdf",
+    "expected_page": 44
+  },
+  {
+    "question": "How did Apple's fiscal year 2023 differ from 2024 and 2022 in terms of the number of weeks?",
+    "expected_answer_contains": [
+      "53 weeks",
+      "52 weeks"
+    ],
+    "expected_source_file": "NASDAQ_AAPL_2024.pdf",
+    "expected_page": 37
+  },
+  {
+    "question": "What was Apple's total comprehensive income for fiscal year 2024?",
+    "expected_answer_contains": [
+      "98,016"
+    ],
+    "expected_source_file": "NASDAQ_AAPL_2024.pdf",
+    "expected_page": 33
+  },
+  {
+    "question": "How much foreign tax credit carryforward did Apple have in Ireland as of September 28, 2024?",
+    "expected_answer_contains": [
+      "5.1 billion"
+    ],
+    "expected_source_file": "NASDAQ_AAPL_2024.pdf",
+    "expected_page": 44
+  },
+  {
+    "question": "What was the U.S. foreign tax credit Apple received that partially offset the State Aid Decision charge?",
+    "expected_answer_contains": [
+      "4.8 billion"
+    ],
+    "expected_source_file": "NASDAQ_AAPL_2024.pdf",
+    "expected_page": 43
+  },
+  {
+    "question": "How much revenue did Apple generate from its electric vehicle division in 2024?",
+    "expected_answer_contains": [
+      "don't have enough information",
+      "not mentioned",
+      "no information"
+    ],
+    "expected_source_file": "NASDAQ_AAPL_2024.pdf",
+    "expected_page": 0
+  },
+  {
+    "question": "What cryptocurrency holdings does Apple report on its balance sheet?",
+    "expected_answer_contains": [
+      "don't have enough information",
+      "not mentioned",
+      "no information"
+    ],
+    "expected_source_file": "NASDAQ_AAPL_2024.pdf",
+    "expected_page": 0
+  },
+  {
+    "question": "What was the total number of iPhones sold by Apple in fiscal year 2024?",
+    "expected_answer_contains": [
+      "don't have enough information",
+      "not",
+      "does not disclose"
+    ],
+    "expected_source_file": "NASDAQ_AAPL_2024.pdf",
+    "expected_page": 0
+  }
+]
