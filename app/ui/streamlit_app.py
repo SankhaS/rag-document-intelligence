@@ -1,7 +1,9 @@
+import sys
+import os
+sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), "../..")))
+
 import streamlit as st
 import time
-import os
-import shutil
 
 from app.core.config import settings
 from app.ingestion.pdf_processor import PDFProcessor
