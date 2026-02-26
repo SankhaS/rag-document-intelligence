@@ -3,7 +3,7 @@ fastapi==0.115.0
 uvicorn==0.30.0
 python-multipart==0.0.9
 pydantic==2.9.0
-pydantic-settings==2.5.0
+pydantic-settings==2.6.1
 
 # PDF Processing
 pdfplumber==0.11.0
@@ -14,6 +14,8 @@ chromadb==0.6.3
 
 # LLM
 anthropic==0.50.0
+
+# HTTP
 httpx==0.28.1
 
 # Chunking
