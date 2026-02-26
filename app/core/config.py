@@ -1,14 +1,25 @@
 import os
-from dotenv import load_dotenv
+try:
+    from dotenv import load_dotenv
+    load_dotenv()
+except ImportError:
+    pass
 from pydantic_settings import BaseSettings
 
-load_dotenv()
+def _get_api_key():
+    key = os.getenv("ANTHROPIC_API_KEY", "")
+    if not key:
+        try:
+            import streamlit as st
+            key = st.secrets["ANTHROPIC_API_KEY"]
+        except Exception:
+            pass
+    return key or ""
 
 
 class Settings(BaseSettings):
     # API Keys
-    anthropic_api_key: str = os.getenv("ANTHROPIC_API_KEY", "")
-    openai_api_key: str = os.getenv("OPENAI_API_KEY", "")
+    anthropic_api_key: str = _get_api_key()
 
     # Embedding
     embedding_model: str = os.getenv("EMBEDDING_MODEL", "all-MiniLM-L6-v2")
