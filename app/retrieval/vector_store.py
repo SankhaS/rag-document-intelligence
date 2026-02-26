@@ -1,4 +1,5 @@
 import chromadb
+import os
 from chromadb.config import Settings as ChromaSettings
 from loguru import logger
 from app.core.config import settings
