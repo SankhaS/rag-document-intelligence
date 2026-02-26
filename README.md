@@ -1,101 +1,121 @@
-# 🧠 RAG Document Intelligence System
+# RAG Document Intelligence
 
-Upload PDFs and ask questions — get accurate, source-cited answers grounded entirely in your documents.
+Upload PDFs. Ask questions. Get cited answers.
 
+I got tired of two things: Ctrl+F not being smart enough for complex questions, and LLMs confidently hallucinating when I asked about my own documents. So I built this.
 
----
+Drop in any PDF (SEC filings, research papers, policy documents, whatever) and ask questions in plain English. The system finds the exact relevant passages, sends them to an LLM with strict grounding instructions, and gives you an answer with page-level source citations. If the answer isn't in your documents, it says so instead of guessing.
 
-## What this is
-
-I built this because I was tired of two things: Ctrl+F not being smart enough, and ChatGPT confidently making things up when I asked about my own documents.
-
-This app lets you upload any PDF — earnings reports, research papers, policy docs, whatever — and ask it questions in plain English. It pulls the exact relevant passages from your documents, sends them to an LLM, and gives you an answer with page-level citations. If the answer isn't in the documents, it tells you that instead of guessing.
+I tested it against Apple's 2024 10-K filing (121 pages) with a 50-question evaluation set that I wrote by hand, covering everything from top-line revenue figures to buried footnotes about Irish tax escrow accounts.
 
 ---
 
-## How it works
+## Evaluation Results
 
-The pipeline has six steps:
+| Metric | Score | What it means |
+|--------|-------|---------------|
+| Hallucination Rate | 0% | Zero answers contained fabricated information |
+| Trick Question Detection | 100% (3/3) | Asked about crypto holdings, EV strategy, social media revenue. None exist in the 10-K. System correctly refused all three |
+| Answer Faithfulness | 62% | Of real questions, 29/47 contained the expected key terms |
+| Retrieval Failures | 38% | 18 questions where the answer was in the PDF but retrieval didn't surface the right chunks |
 
-1. **Extract** — You upload a PDF. `pdfplumber` pulls text out page by page and cleans up the messy whitespace that PDFs love to produce.
+The system is deliberately conservative. It would rather say "I don't have enough information" than risk making something up. Every single retrieval failure was the system declining to answer, not answering incorrectly. The 0% hallucination rate reflects this design choice.
 
-2. **Chunk** — Full pages are too big to search effectively, so I split them into ~500-character pieces using LangChain's `RecursiveCharacterTextSplitter`. It tries to break on paragraphs first, then sentences, so you don't end up with chunks that cut a thought in half. There's a 50-character overlap between chunks so nothing falls through the cracks at boundaries.
+Most failures were on financial table data (balance sheet items, segment breakdowns) where numbers got split across chunk boundaries during text splitting. This is a known limitation of fixed-size chunking on tabular data and the primary target for improvement.
 
-3. **Embed** — Each chunk gets converted into a 384-dimensional vector using `sentence-transformers` (all-MiniLM-L6-v2). This runs locally and costs nothing — no API calls for embeddings.
+The evaluation script lives in `tests/test_evaluation.py`, the test set in `tests/test_questions.json`, and raw per-question results in `tests/evaluation_results.csv`.
 
-4. **Store** — The vectors and their metadata (which file, which page, which chunk) go into ChromaDB, a local vector database. It uses cosine similarity with HNSW indexing for fast lookups.
+---
 
-5. **Retrieve** — When you ask a question, your query gets embedded into the same vector space and compared against all stored chunks. The top 5 most relevant chunks come back.
-
-6. **Generate** — Those 5 chunks plus your question get sent to Claude with strict instructions: only use the provided context, cite your sources with filename and page number, and say "I don't know" if the context doesn't have the answer.
+## How It Works
 
 ```
-PDF → Extract → Chunk → Embed → Store in ChromaDB
-                                        ↓
-User Question → Embed → Search → Top 5 Chunks → Claude → Cited Answer
+PDF Upload > Text Extraction > Chunking > Embedding > ChromaDB
+                                                         |
+       User Question > Embed Query > Cosine Search > Top-K Chunks > Claude > Cited Answer
 ```
 
----
+**Extract.** pdfplumber pulls text page by page. PDFs are messy: inconsistent spacing, merged columns, headers bleeding into body text. The processor cleans this up and tags each page with its source file and page number.
 
-## What I measured
+**Chunk.** Full pages are too large for precise retrieval. LangChain's RecursiveCharacterTextSplitter breaks them into roughly 1000-character pieces, trying to split on paragraph boundaries first, then sentences, so chunks don't cut thoughts in half. A 200-character overlap between chunks prevents information loss at boundaries.
 
-I didn't want this to just "seem like it works." I built an evaluation pipeline with 50 manually written question-answer pairs across 200+ pages and measured three things:
+**Embed.** Each chunk becomes a 384-dimensional vector using sentence-transformers (all-MiniLM-L6-v2). This runs locally on CPU at about 1000 sentences per second and costs nothing.
 
-- **Retrieval Precision@5: 92%** — When I search for an answer, 92% of the time the right chunks are in the top 5 results.
-- **Answer Faithfulness: 95%** — 95% of answers contain the key information from the source documents.
-- **Hallucination Rate: < 3%** — Less than 3% of answers contain information not traceable to the source material.
+**Store.** Vectors and metadata go into ChromaDB with HNSW indexing configured for cosine similarity. Everything persists to disk, so you don't re-embed on restart.
 
-The evaluation script is in `tests/test_evaluation.py`. You can create your own test set and run it against your documents.
+**Retrieve.** Your question gets embedded into the same vector space. ChromaDB returns the top 8 most similar chunks by cosine distance, along with their source file, page number, and similarity score.
 
----
-
-## Tech stack
-
-The backend is **FastAPI** with four main endpoints — upload a PDF, ask a question, list indexed documents, and delete a source. The frontend is a **Streamlit** chat interface where you can upload files, ask questions, and expand source citations to see exactly which passage the answer came from.
-
-Embeddings are handled by **sentence-transformers** (runs locally, free). Vector storage is **ChromaDB** (also local, persistent to disk). The LLM is **Anthropic's Claude** via their API. Text chunking uses **LangChain's RecursiveCharacterTextSplitter**. Everything is containerized with **Docker** and can be spun up with a single `docker-compose up`.
+**Generate.** The retrieved chunks plus your question go to Claude with strict instructions: answer only from the provided context, cite every claim with the filename and page number, and explicitly state when the context is insufficient. The response includes a confidence score based on average retrieval similarity across all returned chunks.
 
 ---
 
-## Project structure
+## Tech Stack
+
+| Component | Technology | Why |
+|-----------|-----------|-----|
+| PDF Extraction | pdfplumber | Handles messy layouts better than PyPDF2, can extract tables |
+| Text Chunking | langchain-text-splitters | Recursive splitting that respects paragraph and sentence boundaries |
+| Embeddings | sentence-transformers (all-MiniLM-L6-v2) | Free, local, fast. 384-dim vectors with no API cost |
+| Vector Store | ChromaDB | Local, persistent, zero config. Cosine similarity with HNSW indexing |
+| LLM | Anthropic Claude | Strong instruction following for grounded, cited answers |
+| REST API | FastAPI | Auto-generated Swagger docs at /docs |
+| Frontend | Streamlit | Chat interface with file upload, source citations, confidence display |
+| Containerization | Docker + docker-compose | Single command to run everything |
+
+---
+
+## Project Structure
 
 ```
 app/
-├── api/routes.py              → FastAPI endpoints
-├── core/config.py             → Settings from .env
-├── core/embeddings.py         → Singleton embedding model (loads once, reused)
-├── ingestion/pdf_processor.py → PDF text extraction + cleaning
-├── ingestion/chunker.py       → Text splitting with metadata
-├── retrieval/vector_store.py  → ChromaDB operations (add, search, delete)
-├── retrieval/rag_chain.py     → The full pipeline: retrieve → build context → LLM → answer
-└── ui/streamlit_app.py        → Chat interface
+    api/routes.py              FastAPI endpoints (upload, query, list sources, delete)
+    core/config.py             Central settings, reads .env and Streamlit secrets
+    core/embeddings.py         Singleton embedding model, loads once and reuses everywhere
+    ingestion/pdf_processor.py PDF to cleaned text with page metadata
+    ingestion/chunker.py       Text to overlapping chunks with source tracking
+    retrieval/vector_store.py  ChromaDB wrapper (add, search, delete, list)
+    retrieval/rag_chain.py     Full pipeline: retrieve, build context, send to Claude, return answer
+    ui/streamlit_app.py        Standalone chat UI, calls classes directly without needing the API
 
 tests/
-├── test_evaluation.py         → Precision, faithfulness, hallucination measurement
-└── test_questions.json        → 50-question test set
+    test_evaluation.py         Retrieval precision, faithfulness, hallucination measurement
+    test_questions.json        50 hand-written Q&A pairs with expected answers and page numbers
+    evaluation_results.csv     Per-question results from the last evaluation run
 
 data/
-├── uploads/                   → PDFs go here
-└── vectorstore/               → ChromaDB stores vectors here
+    uploads/                   Uploaded PDFs stored here
+    vectorstore/               ChromaDB persistence directory
 ```
 
 ---
 
-## Running it
+## Running It
 
-**Option 1: Local**
+You need Python 3.10+ and an Anthropic API key from console.anthropic.com.
 
+Local setup:
 ```bash
-git clone https://github.com/YOUR_USERNAME/rag-document-intelligence.git
+git clone https://github.com/SankhaS/rag-document-intelligence.git
 cd rag-document-intelligence
 
 python -m venv venv
 source venv/bin/activate
 pip install -r requirements.txt
 
-# Add your Anthropic API key to .env
-cp .env.example .env
+echo "ANTHROPIC_API_KEY=sk-ant-your-key-here" > .env
 
+streamlit run app/ui/streamlit_app.py --server.port 8501
+```
+
+Open localhost:8501, upload a PDF, and start asking questions.
+
+With Docker:
+```bash
+docker-compose up --build
+```
+
+If you want the REST API and Swagger docs alongside the chat UI:
+```bash
 # Terminal 1
 uvicorn app.api.routes:app --reload --port 8000
 
@@ -103,38 +123,66 @@ uvicorn app.api.routes:app --reload --port 8000
 streamlit run app/ui/streamlit_app.py --server.port 8501
 ```
 
-**Option 2: Docker**
+---
+
+## Running the Evaluation
+
+Upload a PDF through the UI first so ChromaDB has something to search. Then:
 
 ```bash
-docker-compose up --build
-# API docs at localhost:8000/docs, chat UI at localhost:8501
+python -m tests.test_evaluation
 ```
 
-You need Python 3.10+ and an Anthropic API key (free tier works fine for testing).
+This runs all 50 questions, hits Claude 50 times, and prints a scorecard:
+
+```
+============================================================
+RAG EVALUATION RESULTS
+============================================================
+Test Questions:         50
+Retrieval Precision@5:  XX.XX%
+Answer Faithfulness:    XX.XX%
+Hallucination Rate:     XX.XX%
+No Answer Rate:         XX.XX%
+============================================================
+Detailed results saved to tests/evaluation_results.csv
+```
+
+The test set contains 50 questions against Apple's 2024 10-K, organized by difficulty:
+
+Easy: direct lookups like total revenue, net income, EPS, employee count. Medium: segment breakdowns, product-level revenue, year-over-year comparisons. Hard (financial): balance sheet details, cash flow items, operating margins, tax rates. Hard (reasoning): multi-step questions that require pulling from multiple sections of the document. Hard (qualitative): risk factors, manufacturing locations, competitive landscape. Trick questions: crypto holdings, EV strategy, social media revenue, none of which exist in the 10-K. These test whether the system says "I don't know" instead of hallucinating.
+
+You can write your own test set for any PDF by following the same JSON format.
 
 ---
 
-## Why I made the choices I did
+## Design Decisions
 
-**ChromaDB over Pinecone** — I wanted everything to run locally with zero cloud dependencies. ChromaDB persists to disk, needs no account, and is more than enough for a project of this scale.
+**ChromaDB over Pinecone or Weaviate.** Everything runs locally with zero cloud dependencies or accounts. ChromaDB persists to disk and handles the scale this project needs. If the document count grew to tens of thousands, I'd migrate to a managed solution.
 
-**Local embeddings over OpenAI embeddings** — The sentence transformers model is free, fast (~1000 sentences/sec on CPU), and runs entirely on your machine. No point paying for embeddings when a local model does the job.
+**Local embeddings over OpenAI or Cohere.** The all-MiniLM-L6-v2 model is free, runs on CPU, and embeds about 1000 sentences per second. The entire embedding pipeline costs $0. OpenAI embeddings are marginally better but add latency, cost, and an external dependency for no meaningful gain at this scale.
 
-**500-char chunks with 50-char overlap** — Smaller chunks give you more precise retrieval (less noise per chunk), but too small and you lose context. 500 with 50 overlap is a well-tested default that works for most document types.
+**Singleton pattern on the embedding model.** The model is roughly 80MB. Loading it takes a few seconds. A singleton ensures it loads exactly once and is reused across all requests, whether they come from the API or the Streamlit UI.
 
-**Singleton pattern on the embedding model** — The model is ~80MB. Loading it takes a few seconds. The singleton ensures it loads exactly once and gets reused across every request.
+**1000-character chunks with 200-character overlap.** Smaller chunks (500) gave more precise retrieval for narrative text but destroyed financial tables. A row of numbers would end up in one chunk while its column headers landed in another. Bumping to 1000 with 200 overlap keeps tables intact without losing too much retrieval precision on prose.
 
-**Cosine similarity** — Standard for text embeddings. Two chunks about similar topics produce vectors pointing in similar directions, and cosine measures that angle. It's also scale-invariant, so it doesn't matter if one vector is slightly longer than another.
+**Cosine similarity.** Standard for normalized text embeddings. Measures the angle between vectors regardless of magnitude, so it doesn't matter if one chunk is slightly longer than another.
+
+**Conservative LLM prompting.** The system prompt tells Claude to refuse to answer if the context is insufficient. This is a deliberate trade-off: lower faithfulness score (the system says "I don't know" more often) in exchange for 0% hallucination. In production, a system that admits uncertainty is more trustworthy than one that always gives an answer.
 
 ---
 
-## What I'd improve with more time
+## What I'd Improve
 
-The biggest upgrade would be adding a **cross-encoder re-ranker** between retrieval and generation. Right now the top-5 chunks come straight from vector search, but a re-ranker (like ms-marco-MiniLM) would re-score them with much higher accuracy, especially for nuanced queries.
+**Cross-encoder re-ranking.** Add a re-ranker like ms-marco-MiniLM between retrieval and generation. Right now the top-K chunks come straight from vector search. A cross-encoder would re-score them with much higher accuracy, especially for nuanced or multi-hop queries.
 
-I'd also add **hybrid search** — combining vector similarity with BM25 keyword matching. Vector search is great for semantic meaning but sometimes misses exact terms. BM25 catches those. Together they'd cover more ground.
+**Hybrid search.** Combine vector similarity with BM25 keyword matching. Vector search handles semantic meaning well ("What were Apple's earnings?") but can miss exact terms ("What was the 10.2 billion charge?"). BM25 catches lexical matches. Together they'd cover more ground.
 
-Other things on the list: streaming LLM responses for better UX, support for tables and images in PDFs (not just text), and migrating to a managed vector DB like Pinecone if the document count grows past a few thousand.
+**Table-aware chunking.** The biggest weakness right now. Financial tables need special handling, either extracting them separately with pdfplumber's table detection or using a layout-aware chunking strategy that keeps rows and headers together.
+
+**Streaming responses.** Currently the UI waits for the full response before displaying anything. Streaming from Claude's API would show tokens as they arrive, cutting perceived latency significantly.
+
+**Multi-document cross-referencing.** Support queries that span multiple PDFs ("How did Apple's revenue compare to Microsoft's?") by searching across all indexed documents and presenting a synthesized answer.
 
 ---
 
@@ -144,4 +192,6 @@ MIT
 
 ---
 
-*Built by [Sankhasubhra Ghosal](https://www.linkedin.com/in/sankha-g-b71589137/) — MS Data Science, University of Maryland*
+Built by Sankhasubhra Ghosal. MS in Data Science, University of Maryland.
+
+https://www.linkedin.com/in/sankha-g-b71589137/
