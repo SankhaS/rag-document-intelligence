@@ -1,11 +1,6 @@
 import os
-try:
-    from pydantic_settings import BaseSettings
-except Exception as e:
-    import streamlit as st
-    st.error(f"Import error: {type(e).__name__}: {e}")
-    st.stop()
 from dotenv import load_dotenv
+from pydantic_settings import BaseSettings
 
 load_dotenv()
 

@@ -1,13 +1,5 @@
-try:
-    from app.core.config import settings
-except Exception as e:
-    import streamlit as st
-    st.error(f"Import error: {type(e).__name__}: {e}")
-    st.stop()
-
-import sys
-import os
-sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), "../..")))
+import sys, os
+sys.path.insert(0, os.getcwd())
 
 import streamlit as st
 import time
@@ -17,6 +9,7 @@ from app.ingestion.pdf_processor import PDFProcessor
 from app.ingestion.chunker import DocumentChunker
 from app.retrieval.vector_store import VectorStore
 from app.retrieval.rag_chain import RAGChain
+from app.core.config import settings
 
 st.set_page_config(
     page_title="RAG Document Intelligence",
