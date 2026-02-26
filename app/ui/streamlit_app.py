@@ -1,3 +1,10 @@
+try:
+    from app.core.config import settings
+except Exception as e:
+    import streamlit as st
+    st.error(f"Import error: {type(e).__name__}: {e}")
+    st.stop()
+
 import sys
 import os
 sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), "../..")))
