@@ -1,0 +1,166 @@
+question,answer_preview,status,confidence,expected_terms_found
+What was Apple's total net sales for fiscal year 2024?,"Based on the provided documents, Apple's total net sales for fiscal year 2024 was **$391,035 million** (or $391.035 billion).
+
+This represents a 2% increase compared to fiscal year 2023, when total ne",faithful,0.6802,2/2
+What was Apple's net income for fiscal year 2024?,"Based on the provided context, Apple's net income for fiscal year 2024 was **$93,736 million** (or $93.736 billion).
+
+[Source: NASDAQ_AAPL_2024.pdf, Page 32]",faithful,0.648,2/2
+What was iPhone net sales for fiscal year 2024?,"Based on the provided documents, iPhone net sales for fiscal year 2024 was **$201,183 million** (or $201.18 billion).
+
+[Source: NASDAQ_AAPL_2024.pdf, Page 26]
+[Source: NASDAQ_AAPL_2024.pdf, Page 38]",faithful,0.6284,2/2
+What was Mac net sales for fiscal year 2024?,"Based on the provided documents, Mac net sales for fiscal year 2024 was **$29,984 million** (or $29.984 billion).
+
+The documents also indicate that Mac net sales increased during 2024 compared to 2023",faithful,0.5996,1/1
+What was iPad net sales for fiscal year 2024?,"Based on the provided documents, iPad net sales for fiscal year 2024 was **$26,694 million** (or $26.694 billion).
+
+The documents also note that iPad net sales decreased during 2024 compared to 2023, ",faithful,0.6389,1/1
+What was Apple's Services revenue for fiscal year 2024?,"Based on the provided context, Apple's Services revenue for fiscal year 2024 was $96,169 million (or $96.169 billion).
+
+[Source: NASDAQ_AAPL_2024.pdf, Page 32]",faithful,0.661,1/1
+What was Apple's total gross margin for fiscal year 2024?,"Based on the provided context, Apple's total gross margin for fiscal year 2024 was $180,683 million.
+
+[Source: NASDAQ_AAPL_2024.pdf, Page 32]",faithful,0.5944,1/1
+What was Apple's total gross margin percentage for 2024?,"Based on the provided financial information, I can calculate Apple's gross margin percentage for 2024.
+
+From the consolidated statements of operations:
+- Total net sales for 2024: $391,035 million
+- T",faithful,0.5582,1/1
+What was the Products gross margin percentage for 2024?,"Based on the provided context, the Products gross margin percentage for 2024 was **37.2%**.
+
+[Source: NASDAQ_AAPL_2024.pdf, Page 27]",faithful,0.4989,1/1
+What was the Services gross margin percentage for 2024?,"Based on the provided context, the Services gross margin percentage for 2024 was **73.9%**.
+
+[Source: NASDAQ_AAPL_2024.pdf, Page 27]",faithful,0.5016,1/1
+What was Apple's operating income for fiscal year 2024?,"Based on the provided documents, Apple's operating income for fiscal year 2024 was $123,216 million.
+
+[Source: NASDAQ_AAPL_2024.pdf, Page 32]",faithful,0.6489,1/1
+How much did Apple spend on research and development in 2024?,"I don't have enough information in the provided documents to answer this question about Apple's specific R&D spending amount in 2024.
+
+The provided context only mentions that ""The growth in R&D expens",no_answer,0.6063,0/1
+"What was Apple's selling, general and administrative expense in 2024?","Based on the provided context, Apple's selling, general and administrative expense in 2024 was **$26,097 million** (or $26.1 billion).
+
+The context also indicates that this represented an increase of ",faithful,0.6669,1/1
+What was Apple's effective tax rate for fiscal year 2024?,"Based on the provided documents, Apple's effective tax rate for fiscal year 2024 was **24.1%**.
+
+[Source: NASDAQ_AAPL_2024.pdf, Page 43]
+
+The document shows Apple's effective tax rates for three years",faithful,0.6266,1/1
+What was Apple's provision for income taxes in 2024?,"Based on the provided documents, Apple's provision for income taxes in 2024 was **$29,749 million** (or $29.749 billion).
+
+This represented an effective tax rate of 24.1% for 2024, which was significa",faithful,0.6733,1/1
+What was Apple's net sales from the Americas segment in 2024?,"I don't have enough information in the provided documents to answer this question.
+
+The provided context contains Apple's total net sales figures and breakdowns by product categories (iPhone, Mac, iPa",no_answer,0.64,0/1
+What was Apple's net sales from the Europe segment in 2024?,"Based on the provided context, Apple's net sales from the Europe segment in 2024 was $101,328 million (or $101.328 billion).
+
+[Source: NASDAQ_AAPL_2024.pdf, Page 25]",faithful,0.6291,1/1
+What was Apple's net sales from Greater China in 2024?,"Based on the provided context, Apple's net sales from Greater China in 2024 was **$66,952 million**.
+
+The context also indicates that Greater China net sales decreased during 2024 compared to 2023 (wh",faithful,0.6232,1/1
+What was Apple's net sales from Japan in 2024?,"I don't have enough information in the provided documents to answer this question.
+
+While the context mentions that ""Japan net sales increased during 2024 compared to 2023 due primarily to higher net ",no_answer,0.6231,0/1
+What was Apple's net sales from the Rest of Asia Pacific segment in 2024?,"Based on the provided context, Apple's net sales from the Rest of Asia Pacific segment in 2024 was **$30,658 million**.
+
+The context also notes that Rest of Asia Pacific net sales increased during 202",faithful,0.6277,1/1
+"How much cash and cash equivalents did Apple have as of September 28, 2024?","Based on the provided context, Apple had **$29,943 million** in cash, cash equivalents, and restricted cash and cash equivalents as of September 28, 2024.
+
+[Source: NASDAQ_AAPL_2024.pdf, Page 36]",faithful,0.6342,1/1
+"What were Apple's total assets as of September 28, 2024?","Based on the provided context, Apple's total assets as of September 28, 2024 were $364,980 million (or $364.98 billion).
+
+[Source: NASDAQ_AAPL_2024.pdf, Page 34]",faithful,0.6546,1/1
+How many shares did Apple repurchase during fiscal year 2024?,"Based on the provided documents, Apple repurchased **499 million shares** of its common stock during fiscal year 2024.
+
+This information is explicitly stated in the document: ""During 2024, the Company",faithful,0.6486,2/2
+How much did Apple spend on share repurchases in 2024?,"Based on the provided documents, Apple spent **$95.846 billion** on share repurchases in 2024.
+
+This information comes from Apple's Consolidated Statements of Shareholders' Equity, which shows ""Common",faithful,0.6356,1/2
+"What was Apple's quarterly cash dividend per share as of September 28, 2024?","I don't have enough information in the provided documents to answer this question about Apple's quarterly cash dividend per share as of September 28, 2024.
+
+The documents show that Apple declared divi",no_answer,0.6128,0/1
+"How much commercial paper did Apple have outstanding as of September 28, 2024?","I don't have enough information in the provided documents to answer this question about Apple's commercial paper outstanding as of September 28, 2024.
+
+The provided context sections focus on revenue r",no_answer,0.613,0/2
+"What was the fair value of Apple's Notes as of September 28, 2024?","I don't have enough information in the provided documents to answer this question about the fair value of Apple's Notes as of September 28, 2024.
+
+The provided context contains information about:
+- Fu",no_answer,0.6236,0/2
+"What was Wearables, Home and Accessories net sales for 2024?","Based on the provided documents, Wearables, Home and Accessories net sales for 2024 was **$37,005 million** (or $37.005 billion).
+
+The documents also show that this represents a 7% decrease compared t",faithful,0.4805,1/1
+How much did Apple's total net sales change percentage-wise from 2023 to 2024?,"Based on the provided context, Apple's total net sales increased by 2% from 2023 to 2024.
+
+The specific figures show:
+• 2024 total net sales: $391,035 million
+• 2023 total net sales: $383,285 million
+",faithful,0.6626,1/1
+"What was Apple's depreciation expense on property, plant and equipment in 2024?","I don't have enough information in the provided documents to answer this question specifically about Apple's depreciation expense on property, plant and equipment in 2024.
+
+While the documents do prov",no_answer,0.6062,0/2
+"What was Apple's total property, plant and equipment, net, as of September 28, 2024?","I don't have enough information in the provided documents to answer this question.
+
+The context provided includes Apple's consolidated statements of operations and some accounting policies related to ",no_answer,0.5809,0/1
+What stock exchange is Apple's common stock traded on?,"Based on the provided documents, Apple's common stock is traded on **The Nasdaq Stock Market LLC** under the symbol AAPL.
+
+[Source: NASDAQ_AAPL_2024.pdf, Page 22]
+[Source: NASDAQ_AAPL_2024.pdf, Page 1",faithful,0.5664,1/1
+What is Apple's stock ticker symbol?,"Based on the provided documents, Apple's stock ticker symbol is **AAPL**.
+
+[Source: NASDAQ_AAPL_2024.pdf, Page 1]",faithful,0.5015,1/1
+"How many shareholders of record did Apple have as of October 18, 2024?",I don't have enough information in the provided documents to answer this question. The context provided does not contain any information about the number of shareholders of record that Apple had as of,no_answer,0.6568,0/1
+Where is Apple's headquarters located?,"Based on the provided documents, Apple's headquarters is located at:
+
+**One Apple Park Way, Cupertino, California 95014**
+
+[Source: NASDAQ_AAPL_2024.pdf, Page 1]",faithful,0.5268,2/2
+What are the principal competitive factors important to Apple?,"Based on the provided documents, Apple's principal competitive factors include:
+
+• **Price** - Cost competitiveness in the market
+• **Product and service features** (including security features) - Fun",faithful,0.5753,5/5
+What does Apple's AppleCare brand offer?,"Based on the provided documents, Apple's AppleCare brand offers the following:
+
+• **Fee-based service and support products** - AppleCare is a portfolio of various service offerings under the AppleCare",faithful,0.5986,3/3
+What platforms does Apple operate for digital content distribution?,"Based on the provided context, Apple operates the following platforms for digital content distribution:
+
+• **App Store®** - allows customers to discover and download applications and digital content, ",faithful,0.5673,4/4
+Why did Greater China net sales decrease during 2024?,"Based on the provided documents, Greater China net sales decreased during 2024 for the following reasons:
+
+• **Lower product sales**: The decrease was due primarily to lower net sales of iPhone and iP",faithful,0.5247,3/3
+Why did Europe net sales increase during 2024?,"Based on the provided context, Europe net sales increased during 2024 compared to 2023 due primarily to:
+
+• Higher net sales of Services
+• Higher net sales of iPhone
+
+[Source: NASDAQ_AAPL_2024.pdf, Pa",faithful,0.4723,3/3
+What caused the increase in Products gross margin percentage in 2024?,"Based on the provided documents, the increase in Products gross margin percentage in 2024 was caused by **cost savings**, which were partially offset by a different Products mix and the weakness in fo",faithful,0.5311,1/1
+How much was Apple obligated to pay Ireland in connection with the State Aid Decision?,"Based on the provided documents, Apple was obligated to pay **€14.2 billion or $15.8 billion** to Ireland in connection with the State Aid Decision as of September 28, 2024.
+
+Key details about this ob",faithful,0.487,2/2
+What was the one-time income tax charge related to the State Aid Decision?,"Based on the provided documents, the one-time income tax charge related to the State Aid Decision was **$10.2 billion, net**.
+
+This charge was recorded during the fourth quarter of 2024 after the Euro",faithful,0.4868,1/1
+Who signed the 10-K as Chief Financial Officer?,"Based on the provided context, **Luca Maestri** signed the 10-K as Chief Financial Officer.
+
+The documents show that Luca Maestri signed in his capacity as:
+- Senior Vice President, Chief Financial Of",faithful,0.4755,1/1
+Who is Apple's CEO who certified the 10-K filing?,"Based on the provided context, **Timothy D. Cook** is Apple's CEO who certified the 10-K filing.
+
+The document shows that Timothy D. Cook, in his role as Chief Executive Officer, provided a certificat",faithful,0.6268,2/2
+What was Apple's share-based compensation expense in 2024?,"Based on the provided documents, Apple's share-based compensation expense in 2024 was **$11,688 million** (or $11.688 billion).
+
+This information is found in Apple's Consolidated Statements of Cash Fl",faithful,0.6604,1/1
+What was Apple's total cost of sales in fiscal year 2024?,"Based on the provided context, Apple's total cost of sales in fiscal year 2024 was **$210,352 million**.
+
+This breaks down into:
+• Products cost of sales: $185,233 million
+• Services cost of sales: $2",faithful,0.6639,1/1
+What cryptocurrency investments does Apple hold?,"I don't have enough information in the provided documents to answer this question about Apple's cryptocurrency investments.
+
+The context provided includes information about Apple's marketable securiti",no_answer,0.5255,1/2
+What is Apple's strategy for launching an electric vehicle?,"I don't have enough information in the provided documents to answer this question about Apple's strategy for launching an electric vehicle.
+
+The provided context from Apple's 2024 Form 10-K discusses ",no_answer,0.3605,2/2
+What was Apple's revenue from its social media platform?,"I don't have enough information in the provided documents to answer this question about Apple's revenue from its social media platform.
+
+The documents provided contain information about Apple's overal",no_answer,0.5201,1/2

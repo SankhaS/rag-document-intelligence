@@ -36,7 +36,7 @@ class Settings(BaseSettings):
     chunk_overlap: int = int(os.getenv("CHUNK_OVERLAP", "50"))
 
     # Retrieval
-    top_k: int = 5
+    top_k: int = 8
 
     # LLM
     llm_provider: str = "anthropic"
